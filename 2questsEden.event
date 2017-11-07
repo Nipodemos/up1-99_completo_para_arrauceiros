@@ -217,8 +217,9 @@ macro iniciandoQuestEden {
 	log =Iniciando a quest eden
 	log ==========================
 	]
+
 	#$.param[0] tem como valor a sequencia de conversação correta
-	do talknpc $.NpcNearLastPos $.param[0]
+	do talknpc &arg("$.NpcNearLastPos", 1) &arg("$.NpcNearLastPos", 2) $.param[0]
 }
 
 automacro Eden12salvarNaKafra {
