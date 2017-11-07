@@ -2,7 +2,7 @@
 
 #By Gaspel
 #Edited- by CALF
-#convertido pra eventMacro por Nipodemos
+#convertido e reescrito pra eventMacro por Nipodemos
 automacro virarArruaceiroInicio_Bugged {
 	FreeSkillPoints > 0
 	timeout 30
@@ -98,7 +98,7 @@ automacro virarArruaceiroInicio {
 	}
 }
 
-automacro virarArruaceiro2 {
+automacro virarArruaceiro_etapa2_FalarComSmith {
 	JobID 6 #gatuno
 	QuestActive 2017
 	exclusive 1
@@ -110,7 +110,7 @@ automacro virarArruaceiro2 {
 }
 
 
-automacro virarArruaceiro3 {
+automacro virarArruaceiro_etapa3_coletarItens {
 	JobID 6 #gatuno
 	QuestActive 2018
 	exclusive 1
@@ -143,6 +143,10 @@ automacro virarArruaceiro3 {
 		do mconf 1391 0 0 0
 		do conf attackAuto_inLockOnly 1
 		call voltarAtacar
+		log =================================
+		log Estou coletando ERVA AZUL pra
+		log quest de arruaceiro
+		log =================================
 		]
 		stop
 
@@ -157,6 +161,10 @@ automacro virarArruaceiro3 {
 		do mconf 1084 0 0 0
 		do conf attackAuto_inLockOnly 1
 		call voltarAtacar
+		log ================================
+		log Estou coletando UNHA APODRECIDA
+		log pra quest de arruaceiro
+		log ================================
 		]
 		stop
 
@@ -172,6 +180,10 @@ automacro virarArruaceiro3 {
 		do conf attackAuto_inLockOnly 1
 		do conf route_randomWalk 1
 		call voltarAtacar
+		log ==============================
+		log Estou coletando OSSO para
+		log a quest de arruaceiro
+		log ==============================
 		]
 		stop
 
@@ -188,12 +200,17 @@ automacro virarArruaceiro3 {
 		do conf attackAuto_inLockOnly 1
 		do conf route_randomWalk 1
 		call voltarAtacar
+		log ==============================================
+		log Estou coletando MANDIBULA pra quest de arruaceiro
+		log Recomendado comprar esse item em vez de dropar
+		log Tempo pra dropar todas as mandíbulas: 12 horas
+		log ==============================================
 		]
 		stop
 	}
 }
 
-automacro tenhoOsItensIrProNpc {
+automacro virarArruaceiro_etapa3_tenhoOsItensIrProNpc {
 	InInventory "Erva Azul" >= 6
 	InInventory "Unha Apodrecida" >= 10
 	InInventory "Osso" >= 10
@@ -225,7 +242,7 @@ automacro tenhoOsItensIrProNpc {
 	}
 }
 
-automacro tenhoOsItensbugged {
+automacro virarArruaceiro_etapa3_tenhoOsItensbugged {
 	InInventory "Erva Azul" >= 6
 	InInventory "Unha Apodrecida" >= 10
 	InInventory "Osso" >= 10
@@ -241,7 +258,7 @@ automacro tenhoOsItensbugged {
 }
 
 
-automacro tenhoOsItens {
+automacro virarArruaceiro_etapa3_tenhoOsItens {
 	InInventory "Erva Azul" >= 6
 	InInventory "Unha Apodrecida" >= 10
 	InInventory "Osso" >= 10
@@ -308,6 +325,9 @@ macro irAteLocal_questArruaceiro {
     log =Sequência de conversação: '$.param[1] $.param[2] $.param[3] $.param[4]'
     log ================================
     ]
+    ## $.param[0] tem como valor cidade e coordenadas
+    ## $.param[1] até $.param[4] tem como valor as respostas corretas pra entrar na casa
+
 	do move $.param[0]
 	do talk resp $.param[1]
 	do talk resp $.param[2]
@@ -317,7 +337,49 @@ macro irAteLocal_questArruaceiro {
 	pause 5
 }
 
-automacro virarArruaceiro_morreuNoLabirinto_hpAlto {
+automacro virarArruaceiro_etapa5_DentroDaCasa {
+	JobLevel = 50
+	IsInMapAndCoordinate in_rogue 169 34, in_rogue 246 25, in_rogue 164 106
+	exclusive 1
+	priority -5
+	call {
+		switch ($.pos) {
+			case (= 169 34) {
+				do talknpc 160 34 c r0 c
+			}
+			case (= 246 25) {
+				do move in_rogue 244 33
+				do talknpc 244 39 c r0 c
+			}
+			case (= 164 106) {
+				do move in_rogue 172 108
+				do talknpc 177 109 c r0 c
+			}
+		}
+	}
+}
+
+automacro virarArruaceiro_etapa6_labirinto {
+	JobLevel = 50
+	exclusive 1
+	IsInMapAndCoordinate in_rogue 15 105
+	macro_delay 0.5
+	call {
+		#ahhhh o labirinto.... o bixin vai morrer algumas vezes aqui viu... ou não kkkk
+		do conf attackAuto -1
+		do conf itemsTakeAuto 0
+		do conf lockMap none
+		log ================================
+		log Iniciando Labirinto
+		log ================================
+		do move 23 105
+		do move 23 334
+		#preguiça de fazer o resto das coordenadas específicas
+		do move in_rogue 359 117
+	}
+}
+
+automacro virarArruaceiro_etapa6_morreuNoLabirinto_hpAlto {
 	QuestActive 2026
 	ConfigKeyNot questArruaceiro none
 	JobLevel = 50
@@ -352,7 +414,7 @@ automacro virarArruaceiro_morreuNoLabirinto_hpAlto {
 	}
 }
 
-automacro virarArruaceiro_morreuNoLabirinto_hpBaixo {
+automacro virarArruaceiro_etapa6_morreuNoLabirinto_hpBaixo {
 	QuestActive 2026
 	JobLevel = 50
 	NotInMap in_rogue
@@ -375,49 +437,7 @@ automacro virarArruaceiro_morreuNoLabirinto_hpBaixo {
 	}
 }
 
-automacro virarArruaceiro_DentroDaCasa {
-	JobLevel = 50
-	IsInMapAndCoordinate in_rogue 169 34, in_rogue 246 25, in_rogue 164 106
-	exclusive 1
-	priority -5
-	call {
-		switch ($.pos) {
-			case (= 169 34) {
-				do talknpc 160 34 c r0 c
-			}
-			case (= 246 25) {
-				do move in_rogue 244 33
-				do talknpc 244 39 c r0 c
-			}
-			case (= 164 106) {
-				do move in_rogue 172 108
-				do talknpc 177 109 c r0 c
-			}
-		}
-	}
-}
-
-automacro virarArruaceiro7 {
-	JobLevel = 50
-	exclusive 1
-	IsInMapAndCoordinate in_rogue 15 105
-	macro_delay 0.5
-	call {
-		#ahhhh o labirinto.... o bixin vai morrer algumas vezes aqui viu... ou não kkkk
-		do conf attackAuto -1
-		do conf itemsTakeAuto 0
-		do conf lockMap none
-		log ================================
-		log Iniciando Labirinto
-		log ================================
-		do move 23 105
-		do move 23 334
-		#preguiça de fazer o resto das coordenadas específicas
-		do move in_rogue 359 117
-	}
-}
-
-automacro virarArruaceiro8 {
+automacro virarArruaceiro_etapaFinal {
 	JobLevel = 50
 	#IsInMapAndCoordinate in_rogue 359 117
 	NpcNear /Marybell/
@@ -434,7 +454,7 @@ automacro virarArruaceiro8 {
 	}
 }
 
-automacro virarArruaceiro8Alternativo {
+automacro virarArruaceiro_etapaFinal_Alternativo {
 	JobLevel = 50
 	#IsInMapAndCoordinate in_rogue 378 113
 	NpcNear /Homem Assustador/
