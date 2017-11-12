@@ -77,7 +77,7 @@ automacro iniciandoQuestEden12MoverPerto {
 automacro iniciandoQuestEden26MoverPerto {
 	NpcNotNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 6219 = 1
+	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -92,26 +92,21 @@ automacro iniciandoQuestEden26MoverPerto {
 }
 
 automacro IniciandoQuestEden40MoverPerto {
-	QuestInactive 2017  #===========
-	QuestInactive 2018  #
-	QuestInactive 2022	#
-	QuestInactive 2023  #=quests de arruaceiro
-	QuestInactive 2024	#
-	QuestInactive 2026	#===========
 	QuestInactive 7147	#===========
 	QuestInactive 7148	#
 	QuestInactive 7149	#=quests eden
 	QuestInactive 7150	#
 	QuestInactive 7151	#=============
+	JobLevel != 50
 	NpcNotNear /Boya/
 	BaseLevel 40..49
-	JobID 6 #gatuno
+	JobID 6, 17 #gatuno
 	exclusive 1
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15011
-	InInventoryID 6219 = 1 #emblema do grupo eden
+	InInventoryID 6219 = 1 #emblema do grupo Valhalla
 	InInventoryID 15011 = 0 #armadura que ganha com essa quest
 	call moverPertoDosNpcEden
 }
@@ -120,8 +115,8 @@ automacro inciandoQuestEden60MoverPerto {
 	NpcNotNear /Ur/
 	BaseLevel 60..69
 	exclusive 1
-	InInventoryID 6219 = 1
-	JobID 17 #arruaceiro
+	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	JobID 6,17 #arruaceiro
 	QuestInactive 7214
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
@@ -161,7 +156,7 @@ automacro iniciandoQuestEden12 {
 automacro iniciandoQuestEden26 {
 	NpcNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 6219 = 1
+	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -336,7 +331,7 @@ macro irNoMapa {
 	
 	do move $.param[0] $.param[1] $.param[2] &rand(1,5)
 	do talk &npc($.param[1] $.param[2])
-	if (&defined($.param[3]) = 1) {
+	if (&defined($.param[3]) = 1) { #evita de mostrar linhas vermelhas a toa de "variavel não existe"
 		do conf $.param[3] 0 0 0
 		do conf $.param[4] 0 0 0
 		do conf $.param[5] 0 0 0
@@ -649,102 +644,6 @@ automacro EdenPegandoEquips60 {
 	}
 }
 
-automacro Eden12Equipando {
-	IsNotEquippedID armor 15009
-	InInventoryID 15009 = 1
-	BaseLevel 12..25
-	exclusive 1
-	run-once 1
-	call {
-		[
-		log ===========================================
-		log =equipando os itens de eden lvl 12
-		log ===========================================
-		]
-		$check = GetIndexAndEquipped("robe", 2560) #Capa Valhalla
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("topHead", 5583) #Chapeu valhalla
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("shoes", 2456) #Botas Valhalla Iniciante
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("armor", 15009) #Uniforme Valhalla Iniciante
-		if ($check != -1) do eq $check
-	}
-}
-
-automacro Eden26Equipando {
-	IsNotEquippedID armor 15010
-	InInventoryID 15010 = 1
-	BaseLevel 26..49
-	exclusive 1
-	run-once 1
-	call {
-		[
-		log ===========================================
-		log =equipando os itens de eden lvl 26
-		log ===========================================
-		]
-		$check = GetIndexAndEquipped("shoes", 2457) #Botas Valhalla Intermediárias
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("rightHand", 13050) #Adaga Valhalla Iniciante
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("armor", 15010) #Uniforme Valhalla Intermediário
-		if ($check != -1) do eq $check
-	}
-}
-
-automacro Eden40Equipando {
-	IsNotEquippedID armor 15011
-	InInventoryID 15011 = 1
-	BaseLevel 40..69
-	exclusive 1
-	run-once 1
-	call {
-		[
-		log ===========================================
-		log =equipando os itens de eden lvl 40
-		log ===========================================
-		]
-		$check = GetIndexAndEquipped("shoes", 2458) #Botas Valhalla Avançadas
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("rightHand", 13051) #Adaga Valhalla Intermediária
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("armor", 15011) #Uniforme Valhalla Avançado
-		if ($check != -1) do eq $check
-	}
-}
-
-automacro Eden60Equipando {
-	IsNotEquippedID robe      2571
-	IsNotEquippedID topHead   18514
-	IsNotEquippedID shoes     2473
-	IsNotEquippedID rightHand 13066
-	IsNotEquippedID armor     15031
-	InInventoryID 2571  = 1
-	InInventoryID 18514 = 1
-	InInventoryID 2473  = 1
-	InInventoryID 13066 = 1
-	InInventoryID 15031 = 1
-	BaseLevel 60..98
-	exclusive 1
-	call {
-		[
-		log ===========================================
-		log =equipando os itens de eden level 60
-		log ===========================================
-		]
-		$check = GetIndexAndEquipped("robe", 2571) #Capa II do Grupo Eden
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("topHead", 18514) #Chapéu_II_do_Grupo_Éden#
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("shoes", 2473) ##Botas_IV_do_Grupo_Éden#
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("rightHand",13066) #Adaga_III_do_Grupo_Éden#
-		if ($check != -1) do eq $check
-		$check = GetIndexAndEquipped("armor", 15031) #Armadura_do_Grupo_Éden#
-		if ($check != -1) do eq $check
-	}
-}
 #
 #
 #
