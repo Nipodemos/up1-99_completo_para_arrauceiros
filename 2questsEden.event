@@ -14,7 +14,7 @@ automacro EdenJoinMoveNpc {
 	InInventoryID 2414 = 0 #sapatos de aprendiz
 	exclusive 1
 	BaseLevel >= 12
-	#ConfigKeyNot membroDoEden sim
+	ConfigKeyNot membroDoEden sim
 	NpcNotNear /Lenore|Lime/
 	JobIDNot 0 #aprendiz
 	call moverPertoDosNpcEden
