@@ -35,6 +35,27 @@ automacro configurarFurto {
 	}
 }
 
+automacro configurarAfanar{
+	SkillLevel RG_STEALCOIN 10
+	ConfigKeyNot attackSkillSlot_1 Afanar
+	exclusive 1
+	call {
+		[
+		log ===========================================
+		log =Já tenho a skill Afanar no 10,
+		log =Configurando ela
+		log ===========================================
+		]
+		do conf attackSkillSlot_1 Furto
+		do conf attackSkillSlot_1_lvl 10
+		do conf attackSkillSlot_1_sp >= 15
+		do conf attackSkillSlot_1_whenStatusInactive EFST_POSTDELAY
+		do conf attackSkillSlot_1_maxUses 1
+		do conf attackSkillSlot_1_maxAttempts 1
+		do conf attackSkillSlot_1_disabled 0
+	}
+}
+
 automacro parandoDePegarPotDeAprendiz {
 	InInventoryID 569 < 1
 	InStorageID 569 < 1
