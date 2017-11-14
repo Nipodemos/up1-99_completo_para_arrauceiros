@@ -1,4 +1,4 @@
-# up1-99_completo_para_arrauceiros
+# up1-99_completo_para_arruaceiros
 Repositório da macro de up para arruaceiro, todasas mudanças e melhorias vem pra cá primeiro
 
 ### O que essa macro faz:
