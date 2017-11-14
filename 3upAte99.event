@@ -6,10 +6,10 @@
 	priority -100 #prioridade mais alta de todas
 	call {
 		switch ($.lvl) {
-			case (< 12) {
-				$mapa{lockMap} = pay_fild01
-				$mapa{city} = payon
-			}
+		case (< 12) {
+			$mapa{lockMap} = pay_fild01
+			$mapa{city} = payon
+		}
 	    	case (= 12..25) {
 				do iconf Erva Azul 7 1 0
 				$mapa{lockMap} = pay_fild08
@@ -27,44 +27,44 @@
 				$mapa{lockMap} = pay_fild09
 				$mapa{city} = payon
 	    	}
-			case (= 46..53) {
-				do iconf Erva Azul 7 1 0
-				if (&invamount(Erva Azul) >= 7) {
-					#ja tem erva suficiente, não precisa ir nas lontras
-					$mapa{lockMap} = iz_dun00
-					$mapa{city} = izlude
-				} else {
-					#upar nas lontras pra pegar mais erva azul
-					$mapa{lockMap} = cmd_fild02
-					$mapa{city} = comodo
-				}
-			}
-			case (= 54..59) {
-				do mconf Hidra -1 0 0
-				$mapa{lockMap} = iz_dun02
+		case (= 46..53) {
+			do iconf Erva Azul 7 1 0
+			if (&invamount(Erva Azul) >= 7) {
+				#ja tem erva suficiente, não precisa ir nas lontras
+				$mapa{lockMap} = iz_dun00
 				$mapa{city} = izlude
+			} else {
+				#upar nas lontras pra pegar mais erva azul
+				$mapa{lockMap} = cmd_fild02
+				$mapa{city} = comodo
 			}
-			case (= 60..70) {
-				$mapa{lockMap} = moc_fild17
-				$mapa{city} = morocc
-			}
-			case (= 71..79) {
-				$mapa{lockMap} = mjolnir_11
-				$mapa{city} = prontera
-			}
-			case (= 80..98) {
-				$mapa{lockMap} = gef_fild06
-				$mapa{city} = geffen
-			}
-			else {
-				[
-				log ==========================================
-				log =Erro tentando definir qual mapa upar
-				log =Contate o criador dessa macro (Nipodemos)
-				log ==========================================
-				]
-				stop
-			}
+		}
+		case (= 54..59) {
+			do mconf Hidra -1 0 0
+			$mapa{lockMap} = iz_dun02
+			$mapa{city} = izlude
+		}
+		case (= 60..70) {
+			$mapa{lockMap} = moc_fild17
+			$mapa{city} = morocc
+		}
+		case (= 71..79) {
+			$mapa{lockMap} = mjolnir_11
+			$mapa{city} = prontera
+		}
+		case (= 80..98) {
+			$mapa{lockMap} = gef_fild06
+			$mapa{city} = geffen
+		}
+		else {
+			[
+			log ==========================================
+			log =Erro tentando definir qual mapa upar
+			log =Contate o criador dessa macro (Nipodemos)
+			log ==========================================
+			]
+			stop
+		}
 		}
 	}
 }
