@@ -10,23 +10,23 @@
 				$mapa{lockMap} = pay_fild01
 				$mapa{city} = payon
 			}
-	    	case (= 12..25) {
-				do iconf Erva Azul 7 1 0
-				$mapa{lockMap} = pay_fild08
-				$mapa{city} = payon
-	    	}
-	    	case (= 26..40) {
-				do iconf Unha Apodrecida 10 1 0
-				do iconf Osso 10 1 0
-				do iconf Mandíbula Horrenda 10 1 0
-				do mconf 1084 0 0 0 #cogumelo negro, troço inútil
-				$mapa{lockMap} = pay_dun00
-				$mapa{city} = payon
-	    	}
-	    	case (= 41..45) {
-				$mapa{lockMap} = pay_fild09
-				$mapa{city} = payon
-	    	}
+			case (= 12..25) {
+					do iconf Erva Azul 7 1 0
+					$mapa{lockMap} = pay_fild08
+					$mapa{city} = payon
+			}
+			case (= 26..40) {
+					do iconf Unha Apodrecida 10 1 0
+					do iconf Osso 10 1 0
+					do iconf Mandíbula Horrenda 10 1 0
+					do mconf 1084 0 0 0 #cogumelo negro, troço inútil
+					$mapa{lockMap} = pay_dun00
+					$mapa{city} = payon
+			}
+			case (= 41..45) {
+					$mapa{lockMap} = pay_fild09
+					$mapa{city} = payon
+			}
 			case (= 46..53) {
 				do iconf Erva Azul 7 1 0
 				if (&invamount(Erva Azul) >= 7) {
