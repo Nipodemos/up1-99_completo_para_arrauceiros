@@ -49,7 +49,7 @@ automacro configurarDesintoxicar {
 		do conf useSelf_skill_0 Desintoxicar
 		do conf useSelf_skill_0_lvl 1
 		do conf useSelf_skill_0_sp >= 10
-		do conf useSelf_skill_0_whenStatusActive Poisoned
+		do conf useSelf_skill_0_whenStatusActive HEALTHSTATE_POISON
 		do conf useSelf_skill_0_disabled 0
 	}
 }
