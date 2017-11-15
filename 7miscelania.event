@@ -35,6 +35,25 @@ automacro configurarFurto {
 	}
 }
 
+automacro configurarDesintoxicar {
+	SkillLevel TF_DETOXIFY 1
+	ConfigKeyNot useSelf_skill_0 Desintoxicar
+	exclusive 1
+	call {
+		[
+		log ===========================================
+		log =Já tenho a skill Desintoxicar,
+		log =Configurando ela
+		log ===========================================
+		]
+		do conf useSelf_skill_0 Desintoxicar
+		do conf useSelf_skill_0_lvl 1
+		do conf useSelf_skill_0_sp >= 10
+		do conf useSelf_skill_0_whenStatusActive Poisoned
+		do conf useSelf_skill_0_disabled 0
+	}
+}
+
 automacro parandoDePegarPotDeAprendiz {
 	InInventoryID 569 < 1
 	InStorageID 569 < 1
