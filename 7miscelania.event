@@ -46,13 +46,14 @@ automacro configurarAfanar{
 		log =Configurando ela
 		log ===========================================
 		]
-		do conf attackSkillSlot_1 Furto
-		do conf attackSkillSlot_1_lvl 10
-		do conf attackSkillSlot_1_sp >= 15
-		do conf attackSkillSlot_1_whenStatusInactive EFST_POSTDELAY
-		do conf attackSkillSlot_1_maxUses 1
-		do conf attackSkillSlot_1_maxAttempts 1
-		do conf attackSkillSlot_1_disabled 0
+		do conf -f attackSkillSlot_1 Afanar
+		do conf -f attackSkillSlot_1_lvl 10
+		do conf -f attackSkillSlot_1_sp >= 15
+		do conf -f attackSkillSlot_1_whenStatusInactive EFST_POSTDELAY
+		do conf -f attackSkillSlot_1_maxUses 1
+		do conf -f attackSkillSlot_1_maxAttempts 1
+		do conf -f attackSkillSlot_1_disabled 0
+
 	}
 }
 
