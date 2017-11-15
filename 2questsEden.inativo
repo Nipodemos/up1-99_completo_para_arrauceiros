@@ -1,5 +1,8 @@
+# 22508#Emblema do Éden#
+
+
 automacro EdenJoinMoveNpc {
-	InInventory "Emblema do Grupo Valhalla" = 0
+	InInventoryID 22508 = 0 #Emblema do Éden# 
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
 	IsNotEquippedID armor 15010
@@ -21,7 +24,7 @@ automacro EdenJoinMoveNpc {
 }
 
 automacro EdenJoinTalkNpc {
-	InInventory "Emblema do Grupo Valhalla" = 0
+	InInventoryID 22508 = 0 #Emblema do Éden#
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
 	IsNotEquippedID armor 15010
@@ -30,7 +33,7 @@ automacro EdenJoinTalkNpc {
 	InInventoryID 15011 = 0
 	IsNotEquippedID armor 15031
 	InInventoryID 15031 = 0
-	#ConfigKeyNot membroDoEden sim
+	ConfigKeyNot membroDoEden sim
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot virarArrauceiro true
 	ConfigKeyNot in_saveMap_sequence true
@@ -45,13 +48,12 @@ automacro EdenJoinTalkNpc {
 		do talk text lolol
 		do talk resp 4
 		do iconf 6219 0 0 0 #Emblema do Grupo Valhalla
-		do conf -f membroDoEden sim
 	}
 }
 
 automacro EdenJoinedBugged {
-	InInventoryID 6219 = 1
-	ConfigKeyNotExist membroDoEden
+	InInventoryID 22508 = 1 #Emblema do eden
+	ConfigKeyNot membroDoEden sim
 	exclusive 1
 	run-once 1
 	call {
@@ -61,7 +63,7 @@ automacro EdenJoinedBugged {
 
 automacro iniciandoQuestEden12MoverPerto {
 	NpcNotNear /Boya/
-	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	BaseLevel 12..18
 	exclusive 1
 	JobID 6 #gatuno
@@ -77,7 +79,7 @@ automacro iniciandoQuestEden12MoverPerto {
 automacro iniciandoQuestEden26MoverPerto {
 	NpcNotNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -92,11 +94,11 @@ automacro iniciandoQuestEden26MoverPerto {
 }
 
 automacro IniciandoQuestEden40MoverPerto {
-	QuestInactive 7147	#===========
-	QuestInactive 7148	#
-	QuestInactive 7149	#=quests eden
-	QuestInactive 7150	#
-	QuestInactive 7151	#=============
+	QuestInactive 7147
+	QuestInactive 7148
+	QuestInactive 7149
+	QuestInactive 7150
+	QuestInactive 7151
 	JobLevel != 50
 	NpcNotNear /Boya/
 	BaseLevel 40..49
@@ -106,7 +108,7 @@ automacro IniciandoQuestEden40MoverPerto {
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15011
-	InInventoryID 6219 = 1 #emblema do grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	InInventoryID 15011 = 0 #armadura que ganha com essa quest
 	call moverPertoDosNpcEden
 }
@@ -115,7 +117,7 @@ automacro inciandoQuestEden60MoverPerto {
 	NpcNotNear /Ur/
 	BaseLevel 60..69
 	exclusive 1
-	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	JobID 6,17 #arruaceiro
 	QuestInactive 7214
 	ConfigKeyNot In_saveMap_sequence true
@@ -139,7 +141,7 @@ macro moverPertoDosNpcEden {
 
 automacro iniciandoQuestEden12 {
 	NpcNear /Boya/
-	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	BaseLevel 12..18
 	exclusive 1
 	JobID 6 #gatuno
@@ -156,7 +158,7 @@ automacro iniciandoQuestEden12 {
 automacro iniciandoQuestEden26 {
 	NpcNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 6219 = 1 #Emblema do Grupo Valhalla
+	InInventoryID 22508 =1 #Emblema do Éden#
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -593,6 +595,7 @@ automacro EdenPegandoEquips_IndoProNpc {
 	BaseLevel 12..99
 	exclusive 1
 	call {
+		do move moc_para01 48 37 #portal que antes era porta
 		do move moc_para01 &rand(112,114) &rand(31,33)
 	}
 }
@@ -601,7 +604,7 @@ automacro EdenPegandoEquips_IndoProNpc {
 automacro EdenPegandoEquips12e26e40 {
 	ConfigKey quest_eden terminando
 	BaseLevel 12..59
-	exclusive 1
+	timeout 120
 	NpcNear /hael/i
 	call {
 		[
@@ -620,14 +623,24 @@ automacro EdenPegandoEquips12e26e40 {
 			do talk resp 4
 			do talk resp 0
 		}
-		do conf quest_eden none
+	}
+}
+
+automacro EdenPegueiEquips12e26e40 {
+	ConfigKey quest_eden terminando
+	BaseLevel 12..59
+	NpcNear /hael/i
+	exclusive 1
+	SimpleHookEvent item_gathered
+	call {
+		do conf -f quest_eden none
 	}
 }
 
 automacro EdenPegandoEquips60 {
 	ConfigKey quest_eden terminando
 	BaseLevel 60..98
-	exclusive 1
+	timeout 120
 	IsNotEquippedID armor 15031
 	NpcNear /Ferreiro|smith/i
 	call {
@@ -640,7 +653,19 @@ automacro EdenPegandoEquips60 {
 		do talk $.NpcNearLastBinId
 		do talk resp 2
 		do talk resp 1
-		do conf quest_eden none
+		do conf -f quest_eden none
+	}
+}
+
+automacro EdenPegueiEquips60 {
+	ConfigKey quest_eden terminando
+	BaseLevel 60..98
+	exclusive 1
+	IsNotEquippedID armor 15031
+	NpcNear /Ferreiro|smith/i
+	SimpleHookEvent item_gathered
+	call {
+		do conf -f quest_eden none
 	}
 }
 
