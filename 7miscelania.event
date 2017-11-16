@@ -63,11 +63,30 @@ automacro configurarFurto {
 	}
 }
 
-automacro configurarAfanar{
-	SkillLevel RG_STEALCOIN = 10
-	JobID 17 #arruaceiro
-	ConfigKeyNot attackSkillSlot_0 Afanar
+automacro configurarDesintoxicar {
+	SkillLevel TF_DETOXIFY 1
+	ConfigKeyNot useSelf_skill_0 Desintoxicar
 	exclusive 1
+	call {
+		[
+		log ===========================================
+		log =Já tenho a skill Desintoxicar,
+		log =Configurando ela
+		log ===========================================
+		]
+		do conf useSelf_skill_0 Desintoxicar
+		do conf useSelf_skill_0_lvl 1
+		do conf useSelf_skill_0_sp >= 10
+		do conf useSelf_skill_0_whenStatusActive HEALTHSTATE_POISON
+		do conf useSelf_skill_0_disabled 0
+  }
+}
+
+automacro configurarAfanar{
+  SkillLevel RG_STEALCOIN = 10
+  JobID 17 #arruaceiro
+  ConfigKeyNot attackSkillSlot_0 Afanar
+  exclusive 1
 	call {
 		[
 		log ===========================================
@@ -82,7 +101,6 @@ automacro configurarAfanar{
 		do conf -f attackSkillSlot_0_maxUses 1
 		do conf -f attackSkillSlot_0_maxAttempts 2
 		do conf -f attackSkillSlot_0_disabled 0
-
 	}
 }
 
