@@ -1,28 +1,56 @@
 ﻿
 automacro configurarPotLaranja {
+	InInventoryID 569 < 1 #Poção de Aprendiz (não pode ter essa poção)
+	InStorageID 569 < 1 #Poção de Aprendiz (não pode ter essa poção)
 	Zeny > 30000
-	ConfigKeyNot useSelf_item_0 Poção de Aprendiz
-	ConfigKeyNot useSelf_item_0 Poção Laranja
+	ConfigKeyNot useSelf_item_1 Poção de Aprendiz
+	ConfigKeyNot useSelf_item_1 Poção Laranja
 	exclusive 1
 	call {
-		do conf buyAuto_0 Poção Laranja
-		do conf buyAuto_0_maxAmount 100
-		do conf buyAuto_0_zeny 30000
-		do conf useSelf_item_0 Poção Laranja
-		do conf useSelf_item_0_hp < 50%
-		do iconf 512 100 0 0
+		#do conf usarPot.block Poção Laranja
+		#do conf usarPot.hp < 50%
+		if (&config(useSelf_item_0) =~ /Aprendiz/) do conf useSelf_item_0 none
+		do iconf 502 100 0 0
+		if (&config(buyAuto_1_label) != comprarPot) configurarPotLaranja_comprar()
+		configurarPotLaranja_usar()
 	}
 }
 
+sub configurarPotLaranja_usar {
+	open (my $fh, '>>:encoding(UTF-8)', Settings::getControlFilename('config.txt'));
+	print $fh "useSelf_item Poção Laranja {\n";
+	print $fh "	hp < 50%\n";
+	print $fh "	disabled\n";
+	print $fh "	label usarPot\n";
+	print $fh "}\n";
+	close($fh);
+	Commands::run("reload config");
+}
+
+sub configurarPotLaranja_comprar {
+	open (my $fh, '>>:encoding(UTF-8)', Settings::getControlFilename('config.txt'));
+	print $fh "\n";
+	print $fh "buyAuto Poção Laranja {\n";
+	print $fh "	maxAmount 100\n";
+	print $fh "	zeny 30000\n";
+	print $fh "	npc payon_in01 5 49\n";
+	print $fh "	disabled 0\n";
+	print $fh "	label comprarPot\n";
+	print $fh "}\n";
+	close($fh);
+	Commands::run("reload config");
+}
+
 automacro configurarFurto {
-	SkillLevel TF_STEAL 10
+	SkillLevel TF_STEAL = 10
+	JobID 6 #gatuno
 	ConfigKeyNot attackSkillSlot_0 Furto
 	exclusive 1
 	call {
 		[
 		log ===========================================
 		log =Já tenho a skill Furto no 10,
-		log =Configurando ela
+		log =Configurando pra usar ela
 		log ===========================================
 		]
 		do conf attackSkillSlot_0 Furto
@@ -38,11 +66,11 @@ automacro configurarFurto {
 automacro configurarDesintoxicar {
 	SkillLevel TF_DETOXIFY 1
 	ConfigKeyNot useSelf_skill_0 Desintoxicar
-	exclusive 1
+  exclusive 1
 	call {
 		[
 		log ===========================================
-		log =Já tenho a skill Desintoxicar,
+  	log =Já tenho a skill Desintoxicar,
 		log =Configurando ela
 		log ===========================================
 		]
@@ -51,6 +79,28 @@ automacro configurarDesintoxicar {
 		do conf useSelf_skill_0_sp >= 10
 		do conf useSelf_skill_0_whenStatusActive HEALTHSTATE_POISON
 		do conf useSelf_skill_0_disabled 0
+  }
+}
+
+automacro configurarAfanar{
+  SkillLevel RG_STEALCOIN = 10
+  JobID 17 #arruaceiro
+  ConfigKeyNot attackSkillSlot_0 Afanar
+  exclusive 1
+	call {
+		[
+		log ===========================================
+		log =Já tenho a skill Afanar no 10,
+		log =Configurando pra usar ela
+		log ===========================================
+		]
+		do conf -f attackSkillSlot_0 Afanar
+		do conf -f attackSkillSlot_0_lvl 10
+		do conf -f attackSkillSlot_0_sp >= 15
+		do conf -f attackSkillSlot_0_whenStatusInactive EFST_POSTDELAY
+		do conf -f attackSkillSlot_0_maxUses 1
+		do conf -f attackSkillSlot_0_maxAttempts 2
+		do conf -f attackSkillSlot_0_disabled 0
 	}
 }
 
@@ -61,8 +111,10 @@ automacro parandoDePegarPotDeAprendiz {
 	exclusive 1
 	call {
 		log as poções de aprendiz acabaram, removendo o getAuto
+		#parar de tentar usar tambem
+		if (&config(useSelf_item_0) =~ /Aprendiz/) do conf useSelf_item_0 none
 		do conf getAuto_0 none
-		do conf sitAuto_hp_upper 95
+		do conf sitAuto_hp_upper 90
 	}
 }
 
