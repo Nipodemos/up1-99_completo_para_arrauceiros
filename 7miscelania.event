@@ -42,14 +42,15 @@ sub configurarPotLaranja_comprar {
 }
 
 automacro configurarFurto {
-	SkillLevel TF_STEAL 10
+	SkillLevel TF_STEAL = 10
+	JobID 6 #gatuno
 	ConfigKeyNot attackSkillSlot_0 Furto
 	exclusive 1
 	call {
 		[
 		log ===========================================
 		log =Já tenho a skill Furto no 10,
-		log =Configurando ela
+		log =Configurando pra usar ela
 		log ===========================================
 		]
 		do conf attackSkillSlot_0 Furto
@@ -63,23 +64,24 @@ automacro configurarFurto {
 }
 
 automacro configurarAfanar{
-	SkillLevel RG_STEALCOIN 10
-	ConfigKeyNot attackSkillSlot_1 Afanar
+	SkillLevel RG_STEALCOIN = 10
+	JobID 17 #arruaceiro
+	ConfigKeyNot attackSkillSlot_0 Afanar
 	exclusive 1
 	call {
 		[
 		log ===========================================
 		log =Já tenho a skill Afanar no 10,
-		log =Configurando ela
+		log =Configurando pra usar ela
 		log ===========================================
 		]
-		do conf -f attackSkillSlot_1 Afanar
-		do conf -f attackSkillSlot_1_lvl 10
-		do conf -f attackSkillSlot_1_sp >= 15
-		do conf -f attackSkillSlot_1_whenStatusInactive EFST_POSTDELAY
-		do conf -f attackSkillSlot_1_maxUses 1
-		do conf -f attackSkillSlot_1_maxAttempts 1
-		do conf -f attackSkillSlot_1_disabled 0
+		do conf -f attackSkillSlot_0 Afanar
+		do conf -f attackSkillSlot_0_lvl 10
+		do conf -f attackSkillSlot_0_sp >= 15
+		do conf -f attackSkillSlot_0_whenStatusInactive EFST_POSTDELAY
+		do conf -f attackSkillSlot_0_maxUses 1
+		do conf -f attackSkillSlot_0_maxAttempts 2
+		do conf -f attackSkillSlot_0_disabled 0
 
 	}
 }
