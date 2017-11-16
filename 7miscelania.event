@@ -66,11 +66,11 @@ automacro configurarFurto {
 automacro configurarDesintoxicar {
 	SkillLevel TF_DETOXIFY 1
 	ConfigKeyNot useSelf_skill_0 Desintoxicar
-  exclusive 1
+	exclusive 1
 	call {
 		[
 		log ===========================================
-  	log =Já tenho a skill Desintoxicar,
+		log =Já tenho a skill Desintoxicar,
 		log =Configurando ela
 		log ===========================================
 		]
