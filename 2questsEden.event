@@ -64,12 +64,17 @@ automacro TrocarEmblema_IndoProNpc {
 	InInventoryID 6219 = 1
 	NpcNotNear /Lenore|Lime/
 	exclusive 1
-	call moverPertoDosNpcEden
+	priority -2 # um pouco alta
+	call  {
+		call moverPertoDosNpcEden
+		do reload event
+	}
 }
 
 automacro TrocarEmblema {
 	InInventoryID 6219 = 1
 	exclusive 1	
+	priority -2 # um pouco alta
 	NpcNear /Lenore|Lime/
 	call {
 		do talk $.NpcNearLastBinId
