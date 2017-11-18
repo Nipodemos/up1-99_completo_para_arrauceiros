@@ -1,7 +1,7 @@
 # 22508#Emblema do Éden#
 
 
-automacro EdenJoinMoveNpc {
+automacro seJuntarAoGrupoEden_MoverPerto {
 	InInventoryID 22508 = 0 #Emblema do Éden# 
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
@@ -23,7 +23,7 @@ automacro EdenJoinMoveNpc {
 	call moverPertoDosNpcEden
 }
 
-automacro EdenJoinTalkNpc {
+automacro seJuntarAoGrupoEden {
 	InInventoryID 22508 = 0 #Emblema do Éden#
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
@@ -47,19 +47,36 @@ automacro EdenJoinTalkNpc {
 		do talk text lolol
 		do talk text lolol
 		do talk resp 4
-		do iconf 6219 0 0 0 #Emblema do Grupo Valhalla
+		do iconf 22508 0 0 0 #Emblema do Éden
 	}
 }
 
-automacro EdenJoinedBugged {
+automacro entrouNoGrupoEden {
 	InInventoryID 22508 = 1 #Emblema do eden
 	ConfigKeyNot membroDoEden sim
 	exclusive 1
-	run-once 1
 	call {
 		do conf -f membroDoEden sim
 	}
 }﻿
+
+automacro TrocarEmblema_IndoProNpc {
+	InInventoryID 6219 = 1
+	NpcNotNear /Lenore|Lime/
+	exclusive 1
+	call moverPertoDosNpcEden
+}
+
+automacro TrocarEmblema {
+	InInventoryID 6219 = 1
+	exclusive 1	
+	NpcNear /Lenore|Lime/
+	call {
+		do talk $.NpcNearLastBinId
+		do talk resp 0
+		do iconf 22508 0 0 0 #Novo Emblema do Grupo Valhalla
+	}
+}
 
 automacro iniciandoQuestEden12MoverPerto {
 	NpcNotNear /Boya/
@@ -315,7 +332,7 @@ automacro Eden60IrNoMapa {
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKey saveMap comodo
 	call irNoMapa 'comodo' '173' '354'
-	}
+}
 
 macro irNoMapa {
 	do conf -f quest_eden em_curso
@@ -358,7 +375,7 @@ automacro Eden26Caçar {
 automacro Eden40Caçar {
 	QuestHuntOngoing 7148 1686, 7149 1023, 7150 1273
 	exclusive 1
-  	timeout 180
+	timeout 180
 	ConfigKeyNot virarArruaceiro true
 	JobLevel != 50
 	call caçarMonstros "gef_fild10"
