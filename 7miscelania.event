@@ -15,10 +15,12 @@ automacro configurarPotLaranja {
 			configurarPotLaranja_comprar()
 			pause 2
 			do reload config
+			if (&config(comprarPot.zeny) = 30000) log configuração para compra de poção laranja efetudada com sucesso
 		}
 		configurarPotLaranja_usar()
 		pause 2
 		do reload config
+		if (&config(usarPot.hp) =~/50/) log configuração para uso de poção laranja efetuada com sucesso
 	}
 }
 
