@@ -24,16 +24,19 @@ sub cofigurarskills {
 	print $fh "	monsters \n";
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
+	print $fh "}\n";
 	#AGUA
 	print $fh "attackSkillSlot Lanças de Gelo {\n";
 	print $fh "	monsters\n";
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
+	print $fh "}\n";
 	#VENTO
 	print $fh "attackSkillSlot Relampago {\n";
 	print $fh "	monsters \n";
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
+	print $fh "}\n";
 	close($fh);
 	Commands::run("reload config");
 }
