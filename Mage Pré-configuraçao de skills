@@ -1,0 +1,14 @@
+automacro magesSpells {
+	JobID = 2, 9 ,16
+	exclusive 1
+	run-once 1
+	#Mapas de base -> ein_fild09 | pay_fild02 | mjolnir_11 | mjolnir_01 | mjolnir_02 | cmd_fild01
+	call {
+		do conf attackSkillSlot_0 Relampago
+			do conf attackSkillSlot_0_monsters Esporo #Contra elemento agua
+		do conf attackSkillSlot_1 Lanças de Fogo
+			do conf attackSkillSlot_1_monsters Jiboía, Rabo de Verme, Caramelo, Pé Grande, Creamy, Percevejo, Poporing, Besouro-Chifre, Yoyo, Grove, Flora, Argiope, Argos, Porcellio, Metaling  #Contra Elemento Terra (de vento/veneno estou botando aqui tb porque nao tem dano elemental bom)
+		do conf attackSkillSlot_2 Lanças de Gelo
+			do conf attackSkillSlot_2_monsters Salgueiro Ancião #Contra Elemento Fogo	
+		}
+	}
