@@ -1,5 +1,5 @@
 automacro magesSpells {
-	JobID = 2, 9 ,16
+	JobID 2, 9 ,16
 	exclusive 1
 	run-once 1
 	#Mapas de base -> ein_fild09 | pay_fild02 | mjolnir_11 | mjolnir_01 | mjolnir_02 | cmd_fild01
