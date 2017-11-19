@@ -13,8 +13,12 @@ automacro configurarPotLaranja {
 		do iconf 502 100 0 0
 		if (&config(buyAuto_1_label) != comprarPot) {
 			configurarPotLaranja_comprar()
+			pause 2
+			do reload config
 		}
 		configurarPotLaranja_usar()
+		pause 2
+		do reload config
 	}
 }
 
@@ -26,7 +30,6 @@ sub configurarPotLaranja_usar {
 	print $fh "	label usarPot\n";
 	print $fh "}\n";
 	close($fh);
-	Commands::run("reload config");
 }
 
 sub configurarPotLaranja_comprar {
@@ -40,7 +43,6 @@ sub configurarPotLaranja_comprar {
 	print $fh "	label comprarPot\n";
 	print $fh "}\n";
 	close($fh);
-	Commands::run("reload config");
 }
 
 automacro configurarFurto {
@@ -84,7 +86,7 @@ automacro configurarDesintoxicar {
   }
 }
 
-automacro configurarAfanar{
+automacro configurarAfanar {
   SkillLevel RG_STEALCOIN = 10
   JobID 17 #arruaceiro
   ConfigKeyNot attackSkillSlot_0 Afanar
