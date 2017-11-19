@@ -30,20 +30,20 @@ automacro configurarSkillsEStats{
 	call{
 		switch($.JobIDLast){
 			case(== 0){ #Aprendiz
-				if(&config(skillsAddAuto_list) == "") do conf skillsAddAuto_list $skillsAprendiz
+				if(&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
 				stop
 			}
 			case(= 1..7){ #Classes 1
-				if(&config(skillsAddAuto_list) == $skillsAprendiz) do conf skillsAddAuto_list $skillsClasse1
+				if(&config(skillsAddAuto_list) != $skillsClasse1) do conf skillsAddAuto_list $skillsClasse1
 				stop
 			}
 			case(= 8..20){ #Classes 2
-				if(&config(skillsAddAuto_list) == $skillsClasse1) do conf skillsAddAuto_list $skillsClasse2
+				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
 		do conf skillsAddAuto 1
-		if(&config(statsAddAuto_list) == "") do conf statsAddAuto_list $statsPadrao
+		if(&config(statsAddAuto_list) != $statsPadrao) do conf statsAddAuto_list $statsPadrao
 		do conf statsAddAuto 1
 		do conf statsAddAuto_dontUseBonus 1
 	}	
