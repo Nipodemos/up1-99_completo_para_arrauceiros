@@ -4,12 +4,14 @@ automacro magesSpells {
 	run-once 1
 	#Mapas de base -> ein_fild09 | pay_fild02 | mjolnir_11 | mjolnir_01 | mjolnir_02 | cmd_fild01
 	call {
-		do conf attackSkillSlot_0 Relampago
-			do conf attackSkillSlot_0_monsters Esporo #Contra elemento agua
-		do conf attackSkillSlot_1 Lanças de Fogo
-			do conf attackSkillSlot_1_monsters Jiboía, Rabo de Verme, Caramelo, Pé Grande, Creamy, Percevejo, Poporing, Besouro-Chifre, Yoyo, Grove, Flora, Argiope, Argos, Porcellio, Metaling  #Contra Elemento Terra (de vento/veneno estou botando aqui tb porque nao tem dano elemental bom)
-		do conf attackSkillSlot_2 Lanças de Gelo
-			do conf attackSkillSlot_2_monsters Salgueiro Ancião #Contra Elemento Fogo	
+			if (&config(attackSkillSlot_1_sp) > 0) { #significa que ja existe a configuração
+				log skills de mago configuradas
+			} else {
+				log configurando skills
+				configurarSkills()
+				pause 2
+				do reload config
+			}
 		}
 	}
 	
@@ -21,22 +23,23 @@ sub cofigurarskills {
 	open (my $fh, '>>:encoding(UTF-8)', Settings::getControlFilename('config.txt'));
 	#FOGO
 	print $fh "attackSkillSlot Lanças de Fogo {\n";
-	print $fh "	monsters \n";
+	print $fh "	monsters Jiboía, Rabo de Verme, Caramelo, Pé Grande, Creamy, Percevejo, Poporing, Besouro-Chifre, Yoyo, Grove, Flora, Argiope, Argos, Porcellio, Metaling\n";  
+	#Contra Elemento Terra (de vento/veneno estou botando aqui tb porque nao tem dano elemental bom)
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
 	print $fh "}\n";
 	#AGUA
 	print $fh "attackSkillSlot Lanças de Gelo {\n";
-	print $fh "	monsters\n";
+	print $fh "	monsters Salgueiro Ancião\n";#Contra Elemento Fogo
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
 	print $fh "}\n";
 	#VENTO
 	print $fh "attackSkillSlot Relampago {\n";
-	print $fh "	monsters \n";
+	print $fh "	monsters Esporo \n"; #Contra elemento agua
 	print $fh "	sp > 50\n";
 	print $fh "	whenStatusInactive EFST_POSTDELAY\n";
 	print $fh "}\n";
 	close($fh);
-	Commands::run("reload config");
+	# Commands::run("reload config"); desabilitado
 }
