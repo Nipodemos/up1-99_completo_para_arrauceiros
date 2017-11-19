@@ -11,7 +11,9 @@ automacro configurarPotLaranja {
 		#do conf usarPot.hp < 50%
 		if (&config(useSelf_item_0) =~ /Aprendiz/) do conf useSelf_item_0 none
 		do iconf 502 100 0 0
-		if (&config(buyAuto_1_label) != comprarPot) configurarPotLaranja_comprar()
+		if (&config(buyAuto_1_label) != comprarPot) {
+			configurarPotLaranja_comprar()
+		}
 		configurarPotLaranja_usar()
 	}
 }
