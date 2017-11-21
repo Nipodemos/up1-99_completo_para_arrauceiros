@@ -198,12 +198,6 @@ automacro IniciandoQuestEden40 {
 	NpcNear /Boya/
 	BaseLevel 40..49
 	InInventoryID 6219 = 1
-	QuestInactive 2017
-	QuestInactive 2018
-	QuestInactive 2022
-	QuestInactive 2023
-	QuestInactive 2024
-	QuestInactive 2026
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7147
@@ -269,12 +263,6 @@ automacro Eden40SalvarNaKafra {
 	QuestActive 7147
 	BaseLevel >= 50
 	exclusive 1
-	QuestInactive 2017
-	QuestInactive 2018
-	QuestInactive 2022
-	QuestInactive 2023
-	QuestInactive 2024
-	QuestInactive 2026
 	ConfigKeyNot virarArrauceiro true
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot saveMap prontera
@@ -302,7 +290,7 @@ automacro Eden12IrNoMapa {
 	BaseLevel >= 15
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKey saveMap morocc
-	call irNoMapa 'moc_fild11' '182' '255' 'Filhote de Lobo' 'Escorpião' 'Condor'
+	call irNoMapa 'moc_fild11' '180' '253' 'Filhote de Lobo' 'Escorpião' 'Condor'
 }
 
 automacro Eden26IrNoMapa {
@@ -317,17 +305,11 @@ automacro Eden26IrNoMapa {
 automacro Eden40IrNoMapa {
 	QuestActive 7147
 	BaseLevel >= 50
-	QuestInactive 2017
-	QuestInactive 2018
-	QuestInactive 2022
-	QuestInactive 2023
-	QuestInactive 2024
-	QuestInactive 2026
 	exclusive 1
 	ConfigKeyNot virarArrauceiro true
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKey saveMap prontera
-	call irNoMapa 'in_orcs01' '35' '163' 'Guerreiro Orc' 'Filhote de Orc' 'Senhora Orc'
+	call irNoMapa 'in_orcs01' '38' '175' 'Guerreiro Orc' 'Filhote de Orc' 'Senhora Orc'
 }
 
 automacro Eden60IrNoMapa {
@@ -356,9 +338,9 @@ macro irNoMapa {
 	do move $.param[0] $.param[1] $.param[2] &rand(1,5)
 	do talk &npc($.param[1] $.param[2])
 	if (&defined($.param[3]) = 1) { #evita de mostrar linhas vermelhas a toa de "variavel não existe"
-		do conf $.param[3] 0 0 0
-		do conf $.param[4] 0 0 0
-		do conf $.param[5] 0 0 0
+		do mconf $.param[3] 0 0 0
+		do mconf $.param[4] 0 0 0
+		do mconf $.param[5] 0 0 0
 	}
 }
 
