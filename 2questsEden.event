@@ -164,7 +164,7 @@ macro moverPertoDosNpcEden {
 automacro iniciandoQuestEden12 {
 	NpcNear /Boya/
 	InInventoryID 22508 =1 #Emblema do Éden#
-	BaseLevel 12..18
+	BaseLevel 12..17
 	exclusive 1
 	JobID 6 #gatuno
 	QuestInactive 7128
@@ -233,6 +233,21 @@ macro iniciandoQuestEden {
 
 	#$.param[0] tem como valor a sequencia de conversação correta
 	do talknpc &arg("$.NpcNearLastPos", 1) &arg("$.NpcNearLastPos", 2) $.param[0]
+
+	switch ($.lvl) {
+		case (<= 18) $lvlQueVaiIr = 15
+		case (<= 32) $lvlQueVaiIr = 26
+		case (<= 49) $lvlQueVaiIr = 50
+		case (<= 69) $lvlQueVaiIr = 70
+	}
+	[
+	log ================================
+	log comecei a quest, porém só vou
+	log fazer ela no lvl $lvlQueVaiIr ou acima!
+	log se eu nao tiver no lvl , eu vou upar.
+	log lvl que eu estou: $.lvl
+	log ================================
+	]
 }
 
 automacro Eden12salvarNaKafra {
