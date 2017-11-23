@@ -24,8 +24,8 @@ automacro definirVariaveis{
 #Macro Generica para subir as skills e status dependendo das variaveis
 #Essa macro mantem configurações feitas diretamente no config.txt
 automacro configurarSkillsEStats{
-	timeout 300 #vai rodar de 5 em 5 minutos
 	BaseLevel > 0
+	timeout 300 #vai rodar de 5 em 5 minutos
 	exclusive 1
 	call{
 		switch($.JobIDLast){
@@ -38,7 +38,7 @@ automacro configurarSkillsEStats{
 				stop
 			}
 			case(= 8..20){ #Classes 2
-				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
+				if(&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
