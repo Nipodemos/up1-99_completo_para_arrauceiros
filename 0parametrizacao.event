@@ -3,10 +3,11 @@
 #Macro responsavel por definir as skills/stats padroes dependendo da classe
 #Planejada para extender outras classes no futuro
 automacro definirVariaveis{
+	BaseLevel > 0
 	run-once 1
 	exclusive 1
 	#ConfigKeyNot classe none
-	call{
+	call {
 		$skillsAprendiz = NV_BASIC 9 #Essa é padrão idenpendete da classe
 		#switch (&config(classe)) {
 			#case (=~ /arruaceiro/i) {
@@ -24,11 +25,11 @@ automacro definirVariaveis{
 #Macro Generica para subir as skills e status dependendo das variaveis
 #Essa macro mantem configurações feitas diretamente no config.txt
 automacro configurarSkillsEStats{
-	timeout 300 #vai rodar de 5 em 5 minutos
 	BaseLevel > 0
+	timeout 300 #vai rodar de 5 em 5 minutos
 	exclusive 1
-	call{
-		switch($.JobIDLast){
+	call {
+		switch($.JobID){
 			case(== 0){ #Aprendiz
 				if(&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
 				stop
@@ -38,7 +39,7 @@ automacro configurarSkillsEStats{
 				stop
 			}
 			case(= 8..20){ #Classes 2
-				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
+				if(&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
