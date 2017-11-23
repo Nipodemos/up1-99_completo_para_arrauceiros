@@ -1,3 +1,7 @@
+#Parametrização by vitorsilverio
+
+#Macro responsavel por definir as skills/stats padroes dependendo da classe
+#Planejada para extender outras classes no futuro
 automacro definirVariaveis{
 	BaseLevel > 0
 	run-once 1
@@ -21,23 +25,29 @@ automacro definirVariaveis{
 #Macro Generica para subir as skills e status dependendo das variaveis
 #Essa macro mantem configurações feitas diretamente no config.txt
 
-automacro configurarSkillsEStats{
+automacro configurarSkillsEStats {
 	BaseLevel > 0
 	timeout 300 #vai rodar de 5 em 5 minutos
 	exclusive 1
 	call {
-		log $.job
-		log 
-	
-		switch($.Job) {
+		$job1 = $.job
+		switch ($job1) {
 		
-			case (= Novice)	do conf skillsAddAuto_list $skillsAprendiz
-			case (= Thief)	do conf skillsAddAuto_list $skillsClasse1
-			case (= Rogue)	do conf skillsAddAuto_list $skillsClasse2
+			case (== Novice) {
+				do conf skillsAddAuto_list $skillsAprendiz
+			}
+			case (== Thief) {
+				do conf skillsAddAuto_list $skillsClasse1
+			}
+			case (== Rogue) {	
+				do conf skillsAddAuto_list $skillsClasse2
+			}
+			
 		}
 		
 		do conf skillsAddAuto 1
-		if(&config(statsAddAuto_list) != $statsPadrao) do conf statsAddAuto_list $statsPadrao
+		do conf statsAddAuto_list $statsPadrao
 		do conf statsAddAuto 1
 		do conf statsAddAuto_dontUseBonus 1
 	}	
+}
