@@ -38,7 +38,7 @@ automacro configurarSkillsEStats{
 				stop
 			}
 			case(= 8..20){ #Classes 2
-				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
+				if(&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
