@@ -95,7 +95,7 @@ automacro configurar_Skills_Stats_mapasDeUp {
 				stop
 			}
 			case(= 17){ #Arruaceiro
-				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
+				if(&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
