@@ -149,6 +149,7 @@ macro rachelpra {
 			stop
 		}
 	}
+	
 	$varAeroplano1 = &config(aeroplano1)
 	$varAeroplano2 = &config(aeroplano2)
 	do conf lockMap none
@@ -175,6 +176,7 @@ automacro dentroDoAeroplanoBugged {
 automacro usarAeroplanoBugged {
 	CheckOnAI auto
 	exclusive 1
+	priority -5
 	ConfigKeyNot aeroplano1 none, aeroplano2 none
 	call {
 		#se essa macro se ativar, significa que a AI ta no automático
@@ -200,14 +202,6 @@ automacro dentroDoAeroplanoInternacional_checagem {
 	}
 }
 
-automacro dentroDoAeroplanoInternacional {
-	InMap airplane_01
-	CheckOnAI manual
-	LocalMsg /Bem-vindo a $varAeroplano1|Welcome to $varAeroplano1/i
-	exclusive 1
-	call sairDoAeroplano
-}
-
 automacro dentroDoAeroplanoDomestico_checagem {
 	ConfigKeyNot aeroplano2 none
 	InMap airplane
@@ -221,22 +215,29 @@ automacro dentroDoAeroplanoDomestico_checagem {
 	}
 }
 
-automacro dentroDoAeroplanoDomestico {
-	InMap airplane
+automacro dentroDoAeroplano_pousouNaCidade {
+	InMap airplane_01, airplane
 	CheckOnAI manual
-	LocalMsg /Bem-vindos a $varAeroplano2|Welcome to $varAeroplano2/i
+	LocalMsg /Bem-vindo a ($varAeroplano1|$varAeroplano2)|Welcome to ($varAeroplano1|$varAeroplano2)/i
 	exclusive 1
-	call sairDoAeroplano
-}
-
-macro sairDoAeroplano {
-	do move 243 74
+	call {
+		do move 243 74
+	}
 }
 
 #Se estivermos na cidade, e o local desejado for essa cidade, ele completa o objetivo
 #se estivermos na cidade, mas nao for o objetivo, nada acontece, já que provavelmente
 #ele só está se locomovendo pra fazer qualquer outra coisa aleatoria que nao tem nada
 # a ver com esse macro
+automacro chegueiEmCidade1 {
+	InMap $varAeroplano1
+	NotInMap yuno
+	CheckOnAI manual
+	ConfigKey aeroplano1 $varAeroplano1
+	exclusive 1
+	call objetivoCompleto
+}
+
 automacro chegueiEmCidade2 {
 	InMap $varAeroplano2
 	NotInMap yuno
@@ -246,13 +247,14 @@ automacro chegueiEmCidade2 {
 	call objetivoCompleto
 }
 
-automacro chegueiEmCidade1 {
-	InMap $varAeroplano1
-	NotInMap yuno
-	CheckOnAI manual
-	ConfigKey aeroplano1 $aeroplano 1
-	exclusive 1
-	call objetivoCompleto
+macro objetivoCompleto {
+	#Se estivermos na cidade, e o local desejado for essa cidade, ele completa o objetivo
+	#E automaticamente salva na cidade, usando a macro SetSaveIn
+	log cheguei em $.InMapLast , objetivo completo
+	do conf aeroplano2 none
+	do conf aeroplano1 none
+	do ai on
+	call SetSaveIn "$.InMapLast"
 }
 
 automacro chegueiPertoDeRachel {
@@ -265,15 +267,6 @@ automacro chegueiPertoDeRachel {
 		log indo pra la
 		do move rachel
 	}
-}
-macro objetivoCompleto {
-	#Se estivermos na cidade, e o local desejado for essa cidade, ele completa o objetivo
-	#E automaticamente salva na cidade, usando a macro SetSaveIn
-	log cheguei em $.InMapLast , objetivo completo
-	do conf aeroplano2 none
-	do conf aeroplano1 none
-	do ai on
-	call SetSaveIn "$.InMapLast"
 }
 
 automacro chegueiEmJuno {
@@ -290,7 +283,7 @@ automacro chegueiEmJuno {
 		log destino para aeroplano1 é: &config(aeroplano1)
 		log destino para aeroplano2 é: &config(aeroplano2)
 		
-		if (&config(aeroplano1) =~ /rachel|izlude/i  ) {
+		if ( &config(aeroplano1) =~ /rachel|izlude/i  ) {
 			do move airplane_01
 		} elsif ( &config(aeroplano2) =~ /hugel|einbroch|lighthalzen/i ) {
 			do move airplane
