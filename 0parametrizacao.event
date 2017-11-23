@@ -1,51 +1,108 @@
 #Parametrização by vitorsilverio
-
-#Macro responsavel por definir as skills/stats padroes dependendo da classe
-#Planejada para extender outras classes no futuro
-automacro definirVariaveis{
-	run-once 1
-	exclusive 1
-	#ConfigKeyNot classe none
-	call{
-		$skillsAprendiz = NV_BASIC 9 #Essa é padrão idenpendete da classe
-		#switch (&config(classe)) {
-			#case (=~ /arruaceiro/i) {
-				do conf classe arruaceiro		
-				$skillsClasse1 = TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 8, TF_POISON 10, TF_DETOXIFY 1
-				$skillsClasse2 =  RG_SNATCHER 10, RG_STEALCOIN 10, RG_BACKSTAP 4, RG_TUNNELDRIVE 5, RG_RAID 5, RG_INTIMIDATE 5, RG_PLAGIARISM 10
-				$statsPadrao = 10 dex, 15 agi, 20 dex, 25 agi, 20 str, 30 dex, 60 agi, 30 str, 40 dex, 20 vit, 80 agi, 25 luk ,60 dex, 50 str, 40 luk, 90 agi, 60 str, 29 vit
-				$IDClasse1 = 6
-				$IDClasses2 = 17
-			#}
-		#}
-	}
-}
-
 #Macro Generica para subir as skills e status dependendo das variaveis
-#Essa macro mantem configurações feitas diretamente no config.txt
-automacro configurarSkillsEStats{
+automacro configurar_Skills_Stats_mapasDeUp {
 	timeout 300 #vai rodar de 5 em 5 minutos
 	BaseLevel > 0
+	JobID 0,6,17
 	exclusive 1
-	call{
+	BaseLevel < 99 # não adianta essa macro triggar no lvl 99 né?
+	priority -100 #prioridade mais alta de todas
+	call {
+
+		#SE QUISER MUDAR A BUILD DO SEU BOT, MUDE AQUI
+		#SE MUDAR NO CONFIG.TXT VAI PERDER NA HORA, ESSA MACRO PASSA POR CIMA DA SUA CONFIG SEM DÓ
+
+		$skillsAprendiz = NV_BASIC 9
+		$skillsClasse1  = TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 8, TF_POISON 10, TF_DETOXIFY 1
+		$skillsClasse2  = RG_SNATCHER 10, RG_STEALCOIN 10, RG_BACKSTAP 4, RG_TUNNELDRIVE 5, RG_RAID 5, RG_INTIMIDATE 5, RG_PLAGIARISM 10
+		$statsPadrao    = 10 dex, 15 agi, 20 dex, 25 agi, 20 str, 30 dex, 60 agi, 30 str, 40 dex, 20 vit, 80 agi, 25 luk ,60 dex, 50 str, 40 luk, 90 agi, 60 str, 29 vit
+
+
+		#aqui vc define que mapas ele vai upar,
+		#é bem intuitivo , acho que não tem o que ensinar
+		switch ($.lvl) {
+			case (< 12) {
+				$mapa{lockMap} = pay_fild01 #salgueiro
+				$mapa{city} = payon
+			}
+			case (= 12..25) {
+				do iconf Erva Azul 7 1 0
+				$mapa{lockMap} = pay_fild08 #esporo, jiboia e rabo de verme
+				$mapa{city} = payon
+			}
+			case (= 26..40) {
+				do iconf Unha Apodrecida 10 1 0
+				do iconf Osso 10 1 0
+				do iconf Mandíbula Horrenda 10 1 0
+				do mconf 1084 0 0 0 #cogumelo negro, troço inútil
+				$mapa{lockMap} = pay_dun00 #poporing, múmia e esqueleto
+				$mapa{city} = payon
+			}
+			case (= 41..45) {
+				$mapa{lockMap} = pay_fild09 #salgueiro ancião
+				$mapa{city} = payon
+			}
+			case (= 46..53) {
+				do iconf Erva Azul 7 1 0
+				if (&invamount(Erva Azul) >= 7) {
+					#ja tem erva suficiente, não precisa ir nas lontras
+					$mapa{lockMap} = iz_dun00 #sei la
+					$mapa{city} = izlude
+				} else {
+					#upar nas lontras pra pegar mais erva azul
+					$mapa{lockMap} = cmd_fild02 #lontras
+					$mapa{city} = comodo
+				}
+			}
+			case (= 54..59) {
+				do mconf Hidra -1 0 0
+				$mapa{lockMap} = iz_dun02 #esqueci
+				$mapa{city} = izlude
+			}
+			case (= 60..70) {
+				$mapa{lockMap} = moc_fild17 #hode, Arenoso
+				$mapa{city} = morocc
+			}
+			case (= 71..79) {
+				$mapa{lockMap} = mjolnir_11 #Argiope, Argos
+				$mapa{city} = prontera
+			}
+			case (= 80..98) {
+				$mapa{lockMap} = gef_fild06 #petite terrestre, Louva-a-deus
+				$mapa{city} = geffen
+			}
+			else {
+				[
+				log ==========================================
+				log =Erro tentando definir qual mapa upar
+				log =Contate o criador dessa macro (Nipodemos)
+				log ==========================================
+				]
+				stop
+			}
+		}
+
+#===============================================================================================================#
+		                        #A PARTIR DAQUI NAO PODE MEXER EM NADA!
+
 		switch($.JobIDLast){
-			case(== 0){ #Aprendiz
+			case(= 0){ #Aprendiz
 				if(&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
 				stop
 			}
-			case(= 1..7){ #Classes 1
+			case(= 6){ #Gatuno
 				if(&config(skillsAddAuto_list) != $skillsClasse1) do conf skillsAddAuto_list $skillsClasse1
 				stop
 			}
-			case(= 8..20){ #Classes 2
+			case(= 17){ #Arruaceiro
 				if(&config(skillsAddAuto_list) =! $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
-		do conf skillsAddAuto 1
+		if(&config(skillsAddAuto) != 1) do conf skillsAddAuto 1
 		if(&config(statsAddAuto_list) != $statsPadrao) do conf statsAddAuto_list $statsPadrao
-		do conf statsAddAuto 1
-		do conf statsAddAuto_dontUseBonus 1
+		if(&config(statsAddAuto) != 1) do conf statsAddAuto 1
+		if(&config(statsAddAuto_dontUseBonus) != 1 ) do conf statsAddAuto_dontUseBonus 1
 	}	
 
 }
