@@ -87,22 +87,22 @@ automacro configurar_Skills_Stats_mapasDeUp {
 
 		switch($.JobIDLast){
 			case(= 0){ #Aprendiz
-				if(&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
+				if (&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
 				stop
 			}
 			case(= 6){ #Gatuno
-				if(&config(skillsAddAuto_list) != $skillsClasse1) do conf skillsAddAuto_list $skillsClasse1
+				if (&config(skillsAddAuto_list) != $skillsClasse1) do conf skillsAddAuto_list $skillsClasse1
 				stop
 			}
 			case(= 17){ #Arruaceiro
-				if(&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
+				if (&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
 		}
-		if(&config(skillsAddAuto) != 1) do conf skillsAddAuto 1
-		if(&config(statsAddAuto_list) != $statsPadrao) do conf statsAddAuto_list $statsPadrao
-		if(&config(statsAddAuto) != 1) do conf statsAddAuto 1
-		if(&config(statsAddAuto_dontUseBonus) != 1 ) do conf statsAddAuto_dontUseBonus 1
+		if (&config(skillsAddAuto) != 1) do conf skillsAddAuto 1
+		if (&config(statsAddAuto_list) != $statsPadrao) do conf statsAddAuto_list $statsPadrao
+		if (&config(statsAddAuto) != 1) do conf statsAddAuto 1
+		if (&config(statsAddAuto_dontUseBonus) != 1 ) do conf statsAddAuto_dontUseBonus 1
 	}	
 
 }
