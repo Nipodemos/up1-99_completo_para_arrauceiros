@@ -197,7 +197,7 @@ automacro iniciandoQuestEden26 {
 automacro IniciandoQuestEden40 {
 	NpcNear /Boya/
 	BaseLevel 40..49
-	InInventoryID 6219 = 1
+	InInventoryID 22508 = 1
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7147
