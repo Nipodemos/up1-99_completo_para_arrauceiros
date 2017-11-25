@@ -232,7 +232,7 @@ macro iniciandoQuestEden {
 	]
 
 	#$.param[0] tem como valor a sequencia de conversação correta
-	do talknpc &arg("$.NpcNearLastPos", 1) &arg("$.NpcNearLastPos", 2) $.param[0]
+	do talk &npc(&arg("$.NpcNearLastPos", 1)) &arg("$.NpcNearLastPos", 2) $.param[0]
 
 	switch ($.lvl) {
 		case (<= 18) $lvlQueVaiIr = 15
