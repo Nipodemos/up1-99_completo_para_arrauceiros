@@ -173,7 +173,7 @@ automacro iniciandoQuestEden12 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
-	call iniciandoQuestEden 'r1 r0 r0'
+	call iniciandoQuestEden '1' '0' '0'
 }
 
 
@@ -191,7 +191,7 @@ automacro iniciandoQuestEden26 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15010
 	InInventoryID 15010 = 0
-	call iniciandoQuestEden 'r1'
+	call iniciandoQuestEden '1'
 }
 
 automacro IniciandoQuestEden40 {
@@ -206,7 +206,7 @@ automacro IniciandoQuestEden40 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15011
 	InInventoryID 15011 = 0
-	call iniciandoQuestEden 'r0'
+	call iniciandoQuestEden '0'
 }
 
 automacro inciandoQuestEden60 {
@@ -221,7 +221,7 @@ automacro inciandoQuestEden60 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15031
 	InInventoryID 15031 = 0
-	call iniciandoQuestEden 'r0 r1'
+	call iniciandoQuestEden '0' '1'
 }
 
 macro iniciandoQuestEden {
