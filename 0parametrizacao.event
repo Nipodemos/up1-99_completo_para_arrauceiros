@@ -86,15 +86,15 @@ automacro configurar_Skills_Stats_mapasDeUp {
 		                        #A PARTIR DAQUI NAO PODE MEXER EM NADA!
 
 		switch($.JobIDLast){
-			case(= 0){ #Aprendiz
+			case (= 0) { #Aprendiz
 				if (&config(skillsAddAuto_list) != $skillsAprendiz) do conf skillsAddAuto_list $skillsAprendiz
 				stop
 			}
-			case(= 6){ #Gatuno
+			case (= 6) { #Gatuno
 				if (&config(skillsAddAuto_list) != $skillsClasse1) do conf skillsAddAuto_list $skillsClasse1
 				stop
 			}
-			case(= 17){ #Arruaceiro
+			case (= 17) { #Arruaceiro
 				if (&config(skillsAddAuto_list) != $skillsClasse2) do conf skillsAddAuto_list $skillsClasse2
 				stop
 			}
