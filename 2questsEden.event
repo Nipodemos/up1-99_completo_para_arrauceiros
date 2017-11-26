@@ -232,8 +232,7 @@ macro iniciandoQuestEden {
 	]
 
 	#$.param[0] tem como valor a sequencia de conversação correta
-	do talk &npc(&arg("$.NpcNearLastPos", 1) &arg("$.NpcNearLastPos", 2)) 
-
+	do talk $.NpcNearLastBinId
 	if (&defined($.param[0]) = 1) do talk resp $.param[0]
 	if (&defined($.param[1]) = 1) do talk resp $.param[1]
 	if (&defined($.param[2]) = 1) do talk resp $.param[2]
