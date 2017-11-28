@@ -163,7 +163,7 @@ macro moverPertoDosNpcEden {
 
 automacro iniciandoQuestEden12 {
 	NpcNear /Boya/
-	InInventoryID 22508 =1 #Emblema do Éden#
+	InInventoryID 22508 = 1 #Emblema do Éden#
 	BaseLevel 12..17
 	exclusive 1
 	JobID 6 #gatuno
@@ -180,7 +180,7 @@ automacro iniciandoQuestEden12 {
 automacro iniciandoQuestEden26 {
 	NpcNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 22508 =1 #Emblema do Éden#
+	InInventoryID 22508 = 1 #Emblema do Éden#
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -205,6 +205,7 @@ automacro IniciandoQuestEden40 {
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15011
+	InInventoryID 22508 = 1 #Emblema do Éden# 
 	InInventoryID 15011 = 0
 	call iniciandoQuestEden '0'
 }
@@ -220,6 +221,7 @@ automacro inciandoQuestEden60 {
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15031
+	InInventoryID 22508 = 1 #Emblema do Éden# 
 	InInventoryID 15031 = 0
 	call iniciandoQuestEden '0' '1'
 }
