@@ -207,7 +207,6 @@ automacro virarArruaceiro_etapa3_tenhoOsItensIrProNpc {
 	NpcNotNear /Smith/
 	exclusive 1
 	call {
-		lock virarArruaceiro3
 		do conf -f questArruaceiro peguei
 		log Vamos No NPC já temos os Itens...
 		call pararDeAtacar
@@ -224,7 +223,6 @@ automacro virarArruaceiro_etapa3_tenhoOsItensIrProNpc {
 		do mconf 1078 1 0 0
 		do mconf 1084 1 0 0
 		do mconf 1076 1 0 0
-		lock virarArruaceiro3
 		do move in_rogue &rand(370,373) &rand(20,24)
 	}
 }
@@ -255,14 +253,12 @@ automacro virarArruaceiro_etapa3_tenhoOsItens {
 	QuestActive 2018
 	exclusive 1
 	call {
-		lock virarArruaceiro3
 		do conf lockMap none
         do conf sitAuto_hp_upper 80
 		call pararDeAtacar
 		do talk $.NpcNearLastBinId #Smith
 		do talk $.NpcNearLastBinId #Smith
 		do talk $.NpcNearLastBinId #Smith
-		lock virarArruaceiro3
 	}
 }
 
