@@ -207,6 +207,7 @@ automacro virarArruaceiro_etapa3_tenhoOsItensIrProNpc {
 	NpcNotNear /Smith/
 	exclusive 1
 	call {
+		lock virarArruaceiro_etapa3_coletarItens
 		do conf -f questArruaceiro peguei
 		log Vamos No NPC já temos os Itens...
 		call pararDeAtacar
@@ -236,6 +237,7 @@ automacro virarArruaceiro_etapa3_tenhoOsItensbugged {
 	Zeny < 10000
 	exclusive 1
 	call {
+		lock virarArruaceiro_etapa3_coletarItens
 		log por algum motivo, o bot não tem nem os 10k de zeny pra fazer a quest
 		log tentando resolver isso
 		do autosell
@@ -253,6 +255,7 @@ automacro virarArruaceiro_etapa3_tenhoOsItens {
 	QuestActive 2018
 	exclusive 1
 	call {
+		lock virarArruaceiro_etapa3_coletarItens
 		do conf lockMap none
         do conf sitAuto_hp_upper 80
 		call pararDeAtacar
