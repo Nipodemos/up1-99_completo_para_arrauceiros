@@ -218,7 +218,17 @@ automacro dentroDoAeroplanoDomestico_checagem {
 automacro dentroDoAeroplano_pousouNaCidade {
 	InMap airplane_01, airplane
 	CheckOnAI manual
-	LocalMsg /Bem-vindo a ($varAeroplano1|$varAeroplano2)|Welcome to ($varAeroplano1|$varAeroplano2)/i
+	LocalMsg /Bem-vindo a $varAeroplano1|Welcome to $varAeroplano1/i
+	exclusive 1
+	call {
+		do move 243 74
+	}
+}
+
+automacro dentroDoAeroplano_pousouNaCidade {
+	InMap airplane_01, airplane
+	CheckOnAI manual
+	LocalMsg /Bem-vindo a $varAeroplano2|Welcome to $varAeroplano2/i
 	exclusive 1
 	call {
 		do move 243 74
