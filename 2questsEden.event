@@ -85,7 +85,7 @@ automacro TrocarEmblema {
 
 automacro iniciandoQuestEden12MoverPerto {
 	NpcNotNear /Boya/
-	InInventoryID 22508 =1 #Emblema do Éden#
+	InInventoryID 22508 = 1 #Emblema do Éden#
 	BaseLevel 12..18
 	exclusive 1
 	JobID 6 #gatuno
@@ -101,7 +101,7 @@ automacro iniciandoQuestEden12MoverPerto {
 automacro iniciandoQuestEden26MoverPerto {
 	NpcNotNear /Boya/
 	BaseLevel 26..32
-	InInventoryID 22508 =1 #Emblema do Éden#
+	InInventoryID 22508 = 1 #Emblema do Éden#
 	JobID 6 #gatuno
 	exclusive 1
 	QuestInactive 7138
@@ -139,8 +139,8 @@ automacro inciandoQuestEden60MoverPerto {
 	NpcNotNear /Ur/
 	BaseLevel 60..69
 	exclusive 1
-	InInventoryID 22508 =1 #Emblema do Éden#
-	JobID 6,17 #arruaceiro
+	InInventoryID 22508 = 1 #Emblema do Éden#
+	JobID 17 #arruaceiro
 	QuestInactive 7214
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
@@ -165,7 +165,6 @@ automacro iniciandoQuestEden12 {
 	NpcNear /Boya/
 	InInventoryID 22508 = 1 #Emblema do Éden#
 	BaseLevel 12..17
-	exclusive 1
 	JobID 6 #gatuno
 	QuestInactive 7128
 	ConfigKeyNot In_saveMap_sequence true
@@ -173,16 +172,16 @@ automacro iniciandoQuestEden12 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15009
 	InInventoryID 15009 = 0
+	exclusive 1
 	call iniciandoQuestEden '1' '0' '0'
 }
 
 
 automacro iniciandoQuestEden26 {
 	NpcNear /Boya/
-	BaseLevel 26..32
 	InInventoryID 22508 = 1 #Emblema do Éden#
+	BaseLevel 26..32
 	JobID 6 #gatuno
-	exclusive 1
 	QuestInactive 7138
 	QuestInactive 7139
 	QuestInactive 7140
@@ -191,38 +190,37 @@ automacro iniciandoQuestEden26 {
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15010
 	InInventoryID 15010 = 0
+	exclusive 1
 	call iniciandoQuestEden '1'
 }
 
 automacro IniciandoQuestEden40 {
 	NpcNear /Boya/
+	InInventoryID 22508 = 1 #Emblema do Éden# 
 	BaseLevel 40..49
-	InInventoryID 22508 = 1
 	JobID 6 #gatuno
-	exclusive 1
 	QuestInactive 7147
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15011
-	InInventoryID 22508 = 1 #Emblema do Éden# 
 	InInventoryID 15011 = 0
+	exclusive 1
 	call iniciandoQuestEden '0'
 }
 
 automacro inciandoQuestEden60 {
 	NpcNear /Ur/
+	InInventoryID 22508 = 1 #Emblema do Éden# 
 	BaseLevel 60..69
-	exclusive 1
-	InInventoryID 6219 = 1
 	JobID 17 #arruaceiro
 	QuestInactive 7214
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
 	ConfigKeyNot quest_eden terminando
 	IsNotEquippedID armor 15031
-	InInventoryID 22508 = 1 #Emblema do Éden# 
 	InInventoryID 15031 = 0
+	exclusive 1
 	call iniciandoQuestEden '0' '1'
 }
 
