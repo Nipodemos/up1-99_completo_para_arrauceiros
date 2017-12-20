@@ -25,7 +25,7 @@ automacro configurarPotLaranja {
 		configurarPotLaranja_usar()
 		pause 2
 		do reload config
-		if (&config(usarPot.hp) =~/50/) {
+		if (&config(usarPot.hp) =~ /50/) {
 			log configuração para uso de poção laranja efetuada com sucesso
 		} else {
 			log Erro na configuração para usar a pot , contate o criador da macro
