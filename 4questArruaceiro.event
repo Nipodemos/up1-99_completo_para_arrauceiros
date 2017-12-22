@@ -89,7 +89,6 @@ automacro virarArruaceiro_etapa2_FalarComSmith {
 	JobID 6 #gatuno
 	QuestActive 2017
 	exclusive 1
-	run-once 1
 	call {
 		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk &npc ( 376 23 ) #Smith
