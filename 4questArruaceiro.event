@@ -313,7 +313,12 @@ macro irAteLocal_questArruaceiro {
     ]
     ## $.param[0] tem como valor cidade e coordenadas
     ## $.param[1] até $.param[4] tem como valor as respostas corretas pra entrar na casa
-
+	$x = &arg("$param[0]", 2)
+	$y = &arg("$param[0]", 3)
+	if ($.pos = &eval($x . " " . $y)) {
+		do north
+		do west
+	}
 	do move $.param[0]
 	do talk resp $.param[1]
 	do talk resp $.param[2]

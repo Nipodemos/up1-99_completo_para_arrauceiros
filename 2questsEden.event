@@ -58,7 +58,7 @@ automacro entrouNoGrupoEden {
 	call {
 		do conf -f membroDoEden sim
 	}
-}﻿
+}
 
 automacro TrocarEmblema_IndoProNpc {
 	InInventoryID 6219 = 1
@@ -159,6 +159,7 @@ macro moverPertoDosNpcEden {
 	log ===========================================
 	]
 	do move moc_para01 &rand(33,35) &rand(25,27) #posição otima no Eden
+	do reload event
 }
 
 automacro iniciandoQuestEden12 {
@@ -214,6 +215,7 @@ automacro inciandoQuestEden60 {
 	InInventoryID 22508 = 1 #Emblema do Éden# 
 	BaseLevel 60..69
 	JobID 17 #arruaceiro
+	JobLevel != 50
 	QuestInactive 7214
 	ConfigKeyNot In_saveMap_sequence true
 	ConfigKeyNot quest_eden em_curso
